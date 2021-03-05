@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    class Mammal : Animal
+    abstract class Mammal : Animal
     {
         private int numOfTeeth;
         private double tailLength;
+        public abstract FoodSchedule FoodSchedule { get; }
 
         public Mammal(int numOfTeeth, double tailLength)
         {
@@ -26,10 +27,11 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about birds mammal objects
         /// </summary>
-        public override string ToString()
+
+        public override string GetExtraInfo()
         {
-            string strOut = base.ToString();
-            strOut += String.Format("{0,-20}{1,10}\n{2,-20}{3,10}\n",
+            string strOut = base.GetExtraInfo();
+            strOut += String.Format("\n\n{0,-20}{1,10}\n{2,-20}{3,10}\n\n",
                 "Tail length (cm):",tailLength,"No. of Teeth:",numOfTeeth);
             return strOut;
         }

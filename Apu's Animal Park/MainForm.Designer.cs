@@ -30,7 +30,11 @@ namespace AnimalPark
         private void InitializeComponent()
         {
             this.groupBoxAnimal = new System.Windows.Forms.GroupBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.LabelEaterType = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.lblAnimalInfo = new System.Windows.Forms.Label();
             this.groupBoxType = new System.Windows.Forms.GroupBox();
             this.textBoxAnimalSpec = new System.Windows.Forms.TextBox();
@@ -54,7 +58,6 @@ namespace AnimalPark
             this.listBoxCategory = new System.Windows.Forms.ListBox();
             this.groupBoxgGender = new System.Windows.Forms.GroupBox();
             this.listBoxGender = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxAnimal.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxType.SuspendLayout();
@@ -65,6 +68,8 @@ namespace AnimalPark
             // 
             // groupBoxAnimal
             // 
+            this.groupBoxAnimal.Controls.Add(this.listBox2);
+            this.groupBoxAnimal.Controls.Add(this.LabelEaterType);
             this.groupBoxAnimal.Controls.Add(this.button1);
             this.groupBoxAnimal.Controls.Add(this.groupBox1);
             this.groupBoxAnimal.Controls.Add(this.groupBoxType);
@@ -83,20 +88,62 @@ namespace AnimalPark
             this.groupBoxAnimal.Controls.Add(this.groupBoxgGender);
             this.groupBoxAnimal.Location = new System.Drawing.Point(30, 32);
             this.groupBoxAnimal.Name = "groupBoxAnimal";
-            this.groupBoxAnimal.Size = new System.Drawing.Size(757, 521);
+            this.groupBoxAnimal.Size = new System.Drawing.Size(895, 521);
             this.groupBoxAnimal.TabIndex = 0;
             this.groupBoxAnimal.TabStop = false;
             this.groupBoxAnimal.Text = "ANIMAL SPECIFICATIONS";
             // 
+            // listBox2
+            // 
+            this.listBox2.BackColor = System.Drawing.SystemColors.Menu;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(593, 347);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox2.Size = new System.Drawing.Size(277, 160);
+            this.listBox2.TabIndex = 23;
+            // 
+            // LabelEaterType
+            // 
+            this.LabelEaterType.AutoSize = true;
+            this.LabelEaterType.Location = new System.Drawing.Point(593, 331);
+            this.LabelEaterType.Name = "LabelEaterType";
+            this.LabelEaterType.Size = new System.Drawing.Size(82, 13);
+            this.LabelEaterType.TabIndex = 22;
+            this.LabelEaterType.Text = "LabelEaterType";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(521, 175);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(187, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "LOAD IMAGE OF THE ANIMAL";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Controls.Add(this.lblAnimalInfo);
             this.groupBox1.Location = new System.Drawing.Point(12, 322);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 188);
+            this.groupBox1.Size = new System.Drawing.Size(877, 193);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ANIMAL INFO:";
+            this.groupBox1.Text = "LIST OF REGISTERED ANIMALS:";
+            // 
+            // listView1
+            // 
+            this.listView1.FullRowSelect = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(261, 25);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(300, 159);
+            this.listView1.TabIndex = 19;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // lblAnimalInfo
             // 
@@ -111,9 +158,9 @@ namespace AnimalPark
             // 
             this.groupBoxType.Controls.Add(this.textBoxAnimalSpec);
             this.groupBoxType.Controls.Add(this.LabelSpeciesProperty);
-            this.groupBoxType.Location = new System.Drawing.Point(303, 242);
+            this.groupBoxType.Location = new System.Drawing.Point(303, 211);
             this.groupBoxType.Name = "groupBoxType";
-            this.groupBoxType.Size = new System.Drawing.Size(284, 61);
+            this.groupBoxType.Size = new System.Drawing.Size(284, 64);
             this.groupBoxType.TabIndex = 15;
             this.groupBoxType.TabStop = false;
             this.groupBoxType.Text = "ANIMAL SPECIFICATIONS:";
@@ -138,24 +185,24 @@ namespace AnimalPark
             // 
             this.pictureBoxAnimal.Location = new System.Drawing.Point(443, 16);
             this.pictureBoxAnimal.Name = "pictureBoxAnimal";
-            this.pictureBoxAnimal.Size = new System.Drawing.Size(308, 204);
+            this.pictureBoxAnimal.Size = new System.Drawing.Size(265, 157);
             this.pictureBoxAnimal.TabIndex = 13;
             this.pictureBoxAnimal.TabStop = false;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(271, 330);
+            this.buttonAdd.Location = new System.Drawing.Point(304, 277);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(134, 30);
             this.buttonAdd.TabIndex = 12;
-            this.buttonAdd.Text = "ADD";
+            this.buttonAdd.Text = "ADD THIS ANIMAL";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // checkBoxAnimals
             // 
             this.checkBoxAnimals.AutoSize = true;
-            this.checkBoxAnimals.Location = new System.Drawing.Point(317, 219);
+            this.checkBoxAnimals.Location = new System.Drawing.Point(317, 179);
             this.checkBoxAnimals.Name = "checkBoxAnimals";
             this.checkBoxAnimals.Size = new System.Drawing.Size(121, 17);
             this.checkBoxAnimals.TabIndex = 11;
@@ -170,7 +217,7 @@ namespace AnimalPark
             this.groupBoxMammal.Controls.Add(this.labelTeeth);
             this.groupBoxMammal.Controls.Add(this.textBoxTeeth);
             this.groupBoxMammal.Controls.Add(this.textBoxTail);
-            this.groupBoxMammal.Location = new System.Drawing.Point(12, 220);
+            this.groupBoxMammal.Location = new System.Drawing.Point(12, 211);
             this.groupBoxMammal.Name = "groupBoxMammal";
             this.groupBoxMammal.Size = new System.Drawing.Size(285, 96);
             this.groupBoxMammal.TabIndex = 10;
@@ -273,7 +320,7 @@ namespace AnimalPark
             this.listBoxAnimal.FormattingEnabled = true;
             this.listBoxAnimal.Location = new System.Drawing.Point(317, 39);
             this.listBoxAnimal.Name = "listBoxAnimal";
-            this.listBoxAnimal.Size = new System.Drawing.Size(120, 173);
+            this.listBoxAnimal.Size = new System.Drawing.Size(120, 134);
             this.listBoxAnimal.TabIndex = 2;
             this.listBoxAnimal.SelectedIndexChanged += new System.EventHandler(this.listBoxAnimal_SelectedIndexChanged);
             // 
@@ -282,7 +329,7 @@ namespace AnimalPark
             this.listBoxCategory.FormattingEnabled = true;
             this.listBoxCategory.Location = new System.Drawing.Point(177, 39);
             this.listBoxCategory.Name = "listBoxCategory";
-            this.listBoxCategory.Size = new System.Drawing.Size(120, 173);
+            this.listBoxCategory.Size = new System.Drawing.Size(120, 134);
             this.listBoxCategory.TabIndex = 1;
             this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxCategory_SelectedIndexChanged);
             // 
@@ -291,7 +338,7 @@ namespace AnimalPark
             this.groupBoxgGender.Controls.Add(this.listBoxGender);
             this.groupBoxgGender.Location = new System.Drawing.Point(12, 91);
             this.groupBoxgGender.Name = "groupBoxgGender";
-            this.groupBoxgGender.Size = new System.Drawing.Size(159, 123);
+            this.groupBoxgGender.Size = new System.Drawing.Size(159, 82);
             this.groupBoxgGender.TabIndex = 9;
             this.groupBoxgGender.TabStop = false;
             this.groupBoxgGender.Text = "GENDER";
@@ -301,24 +348,14 @@ namespace AnimalPark
             this.listBoxGender.FormattingEnabled = true;
             this.listBoxGender.Location = new System.Drawing.Point(18, 19);
             this.listBoxGender.Name = "listBoxGender";
-            this.listBoxGender.Size = new System.Drawing.Size(120, 95);
+            this.listBoxGender.Size = new System.Drawing.Size(120, 56);
             this.listBoxGender.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(637, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "LOAD IMAGE:";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 554);
+            this.ClientSize = new System.Drawing.Size(937, 554);
             this.Controls.Add(this.groupBoxAnimal);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -364,6 +401,9 @@ namespace AnimalPark
         private System.Windows.Forms.ComboBox comboBoxReptile;
         private System.Windows.Forms.TextBox textBoxAnimalSpec;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LabelEaterType;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 

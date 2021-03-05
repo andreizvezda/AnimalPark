@@ -16,6 +16,8 @@ namespace AnimalPark
     class Horse : Mammal
     {
         private string breed;
+        private FoodSchedule foodSchedule;
+
         public Horse(int numOfTeeth, double tailLength) : base(numOfTeeth, tailLength)
         {
             breed = "unknown";
@@ -30,9 +32,34 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about horse
         /// </summary>
-        public override string ToString()
+        /// 
+
+        private void SetFoodSchedule()
         {
-            string strOut = base.ToString();
+            foodSchedule = new FoodSchedule();
+            foodSchedule.Add("Morning: Bla Bla Bla");
+            foodSchedule.Add("Lunch: Bla Bla Bla");
+            foodSchedule.Add("Evening: Bla Bla Bla");
+        }
+        public override FoodSchedule FoodSchedule => foodSchedule;
+
+        public override FoodSchedule GetFoodSchedule()
+        {
+            SetFoodSchedule();
+            return foodSchedule;
+
+        }
+
+        public override EaterType GetEaterType()
+        {
+            return EaterType.Herbivore;
+
+        }
+        public override string GetExtraInfo()
+        {
+            string strOut = "Horse\n\n";
+
+            strOut += base.GetExtraInfo();
             strOut += String.Format("Breed: {0}. ", breed);
 
             return strOut;

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 /// <summary>
 /// Class to manage created Animal list
 /// </summary>
@@ -15,11 +17,12 @@ namespace AnimalPark
 {
     class AnimalManager
     {
-        private List<Animal> animalList;
-
+        private List<IAnimal> animalList;
+        private string startID = "000";
         public AnimalManager()
         {
-            animalList = new List<Animal>();
+            animalList = new List<IAnimal>();
+            
         
         }
         private int FindVacantPosition()
@@ -31,42 +34,21 @@ namespace AnimalPark
             }
             return -1;
         }
-
+        
         //will save animal object into animalList array if there is free space, and return true/false
-        public bool Add(Animal newAnimal)
+        public int Add(IAnimal newAnimal, CategoryType 
+            category)
         {
-            bool ok = true;
-            int emptyIndex = FindVacantPosition();
-
-            if (emptyIndex >= 0 && newAnimal != null)
-            {
-
-               animalList[emptyIndex] = newAnimal;
-            }
-            else
-            {
-                ok = false;
-            }
-
-            return ok;
-
-        }
-
-        //overloaded Add method 
-        public bool Add(Animal newAnimal, int index)
-        {
-            bool ok = true;
-
+            
             if (newAnimal != null)
             {
-
-                animalList[index] = newAnimal;
+                newAnimal.Id = GetNewID(category);
+                animalList.Add(newAnimal);
             }
-            else
-                ok = false;
-            return ok;
+            return animalList.Count - 1;
 
         }
+
 
         //giving current number of items in the array
         public int CurrentNumberOfItems()
@@ -81,15 +63,11 @@ namespace AnimalPark
         //checking in index is not out of bound
         public bool CheckIndex(int index)
         {
-            if (index < animalList.Count)
-                return true;
-            else
-                return false;
-
+            return (animalList != null) & (index < animalList.Count) & (index >= 0);
         }
 
         //Gets animal with a selected index from the array
-        public Animal GetAnimalAt(int index)
+        public IAnimal GetAnimalAt(int index)
         {
             if (CheckIndex(index))
                 return animalList[index];
@@ -97,6 +75,37 @@ namespace AnimalPark
                 return null;
         }
 
+        public string[] GetAnimalListInfoStrings()
+
+        {
+            string[] strOut = new string[this.animalList.Count];
+            int i = 0;
+
+            foreach (Animal obj in this.animalList)
+            {
+                strOut[i] += obj.ToString();
+                i += 1;
+            }
+            return strOut;
+
+        }
+        public string GetNewID(CategoryType category)
+        {
+            if (category == CategoryType.Mammal)
+            {
+                startID = "M";
+            }
+            else if (category == CategoryType.Bird)
+            {
+                startID = "B";
+            }
+            else if (category == CategoryType.Reptile)
+            {
+                startID = "R";
+            }
+
+            return startID + CurrentNumberOfItems().ToString();
+        }
     }
 
 }

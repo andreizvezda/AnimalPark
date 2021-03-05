@@ -30,6 +30,9 @@ namespace AnimalPark
                 case MammalSpecies.Dog:
                     mammal = new Dog(numOfTeeth, tailLength);
                     break;
+                case MammalSpecies.Horse:
+                    mammal = new Horse(numOfTeeth, tailLength);
+                    break;
 
 
             }

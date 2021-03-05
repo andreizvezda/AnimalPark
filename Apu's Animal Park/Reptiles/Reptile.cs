@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    class Reptile : Animal
+    abstract class Reptile : Animal
     {
         private bool livesInWater;
         private double weight;
+        public abstract FoodSchedule FoodSchedule { get; }
 
         public Reptile(double weight, bool livesInWater)
         {
@@ -28,6 +29,8 @@ namespace AnimalPark
         /// <summary>
         /// CreateReptile: Method that will be used to created different reptile objects
         /// </summary>
+        /// 
+
         public static Reptile CreateReptile(ReptileSpecies species, double weight, bool livesInWater)
         {
 
@@ -44,7 +47,6 @@ namespace AnimalPark
                     reptile = new Turtle(weight, livesInWater);
                     break;
 
-
             }
             return reptile;
         }
@@ -52,10 +54,11 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about reptiles
         /// </summary>
-        public override string ToString()
+        public override string GetExtraInfo()
         {
-            string strOut = base.ToString();
-            strOut += String.Format("{0,-20}{1,10}\n{2,-20}{3,10}\n",
+
+            string strOut = base.GetExtraInfo();
+            strOut += String.Format("\n\n{0,-20}{1,10}\n{2,-20}{3,10}\n\n",
                 "Lives in water?:",livesInWater,"Weight:",weight);
             return strOut;
         }

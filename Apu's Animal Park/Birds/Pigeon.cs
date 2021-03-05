@@ -13,9 +13,11 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    internal class Pigeon : Bird
+    class Pigeon : Bird
     {
         private string color;
+        private FoodSchedule foodSchedule;
+
 
         public Pigeon(double wingSpan, double lengthOfBeak) : base(wingSpan, lengthOfBeak)
         {
@@ -28,14 +30,39 @@ namespace AnimalPark
             set { color = value; }
         }
 
+        private void SetFoodSchedule()
+        {
+            foodSchedule = new FoodSchedule();
+            foodSchedule.EaterType = EaterType.Omnivore;
+            foodSchedule.Add("Morning: Bla Bla Bla");
+            foodSchedule.Add("Lunch: Bla Bla Bla");
+            foodSchedule.Add("Evening: Bla Bla Bla");
+        }
+        public override FoodSchedule FoodSchedule => foodSchedule;
+
+        public override FoodSchedule GetFoodSchedule()
+        {
+            SetFoodSchedule();
+            return foodSchedule;
+
+        }
+
+        public override EaterType GetEaterType()
+        {
+            return EaterType.Herbivore;
+
+        }
         /// <summary>
         /// ToString: Method to print out info about pigeon
         /// </summary>
-        public override string ToString()
+        public override string GetExtraInfo()
         {
-            string strOut = base.ToString();
+            string strOut = "Pigeon\n\n";
+
+            strOut += base.GetExtraInfo();
             strOut += String.Format("Color: {0}. ", color);
             return strOut;
         }
+
     }
 }

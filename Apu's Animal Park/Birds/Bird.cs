@@ -13,17 +13,17 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    class Bird : Animal
+    abstract class Bird : Animal
     {
         private double wingSpan;
         private double lengthOfBeak;
+        public abstract FoodSchedule FoodSchedule { get; }
 
         public Bird(double wingSpan, double lengthOfBeak)
         {
             this.wingSpan = wingSpan;
             this.lengthOfBeak = lengthOfBeak;
         }
-
         /// <summary>
         /// CreateBird: Method that will be used to create different bird objects
         /// </summary>
@@ -47,13 +47,16 @@ namespace AnimalPark
             }
             return bird;
         }
+
+
+
         /// <summary>
         /// ToString: Method to print out info about bird objects
         /// </summary>
-        public override string ToString()
+        public override string GetExtraInfo()
         {
-            string strOut = base.ToString();
-            strOut += String.Format("{0,-20}{1,10}\n{2,-16}{3,10} \n",
+            string strOut = base.GetExtraInfo();
+            strOut += String.Format("\n\n{0,-20}{1,10}\n{2,-16}{3,10}\n\n",
                 "Wingspan (cm):",wingSpan,"Length of a beak:",lengthOfBeak);
             return strOut;
         }

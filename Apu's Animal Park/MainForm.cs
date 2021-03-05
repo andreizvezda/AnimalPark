@@ -18,6 +18,7 @@ namespace AnimalPark
     public partial class MainForm : Form
     {
         private AnimalManager manager = new AnimalManager();
+        private FoodSchedule foodSchedule = new FoodSchedule();
         public MainForm()
         {
             InitializeComponent();
@@ -51,6 +52,11 @@ namespace AnimalPark
             textBoxAge.Text = string.Empty;
             textBoxTeeth.Text = string.Empty;
             textBoxTail.Text = string.Empty;
+            //label3.Text = string.Format("{0,-10}{1,-20}{2,10}{3,10}", "ID", "NAME", "AGE", "GENDER");
+            listView1.Columns.Add("ID", 40, HorizontalAlignment.Left);
+            listView1.Columns.Add("NAME", 80, HorizontalAlignment.Left);
+            listView1.Columns.Add("AGE", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("GENDER", 120, HorizontalAlignment.Left);
         }
 
         private void checkBoxAnimals_CheckedChanged(object sender, EventArgs e)
@@ -114,8 +120,7 @@ namespace AnimalPark
             }
 
             comboBoxReptile.Visible = false;
-            comboBoxReptile.Items.Add("YES");
-            comboBoxReptile.Items.Add("NO");
+
             textBoxTeeth.Visible = true;
 
             if (listBoxCategory.SelectedIndex == 0)
@@ -126,7 +131,6 @@ namespace AnimalPark
             else if (listBoxCategory.SelectedIndex == 1)
             {
                 comboBoxReptile.Visible = true;
-
                 textBoxTeeth.Visible = false;
                 labelTeeth.Text = "LIVES IN WATER? ";
                 txtTail.Text = "WEIGHT (KG): ";
@@ -142,10 +146,16 @@ namespace AnimalPark
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+
             ///Method that creates new animal object based on the data in the form
             Animal animal = ReadInput();
-            manager.Add(animal);
-            lblAnimalInfo.Text = animal.ToString();
+            CategoryType category = ReadCategory();
+
+            manager.Add(animal, category);
+            lblAnimalInfo.Text = animal.GetExtraInfo();
+            ShowAllAnimals();
+
+
         }
 
         private Animal ReadInput()
@@ -173,9 +183,21 @@ namespace AnimalPark
             if (animal != null)
             { ReadCommonValues(ref animal); }
             return animal;
+
         }
 
+        private void ShowAllAnimals()
+        {
+            int numberOfItems = manager.CurrentNumberOfItems();
 
+            listView1.Items.Clear();
+            for (int i = 0; i < numberOfItems; i++)
+            {
+
+
+                listView1.Items.Add(new ListViewItem(new string[] { manager.GetAnimalAt(i).Id.ToString(), manager.GetAnimalAt(i).Name.ToString(), manager.GetAnimalAt(i).Age.ToString(), manager.GetAnimalAt(i).Gender.ToString() }));
+            }
+        }
 
         private void ReadCommonValues(ref Animal animal)
 
@@ -259,12 +281,12 @@ namespace AnimalPark
         }
 
         private void listBoxAnimal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //method to update animal specific property groupbox based on species selected
+        {        
+
+                      //method to update animal specific property groupbox based on species selected
             comboBoxReptile.Visible = false;
             textBoxTeeth.Visible = true;
             groupBoxType.Text = listBoxAnimal.SelectedItem.ToString().ToUpper() + " SPECIFICATIONS:";
-
             if (listBoxAnimal.SelectedItem.ToString().ToLower() == "cat" || listBoxAnimal.SelectedItem.ToString().ToLower() == "dog" || listBoxAnimal.SelectedItem.ToString().ToLower() == "horse")
                 {
                 groupBoxMammal.Text = "MAMMAL SPECIFICATIONS:";
@@ -279,6 +301,8 @@ namespace AnimalPark
 
                 LabelSpeciesProperty.Text = "COLOR: ";
                 comboBoxReptile.Visible = true;
+                comboBoxReptile.Items.Add("YES");
+                comboBoxReptile.Items.Add("NO");
                 textBoxTeeth.Visible = false;
                 labelTeeth.Text = "LIVES IN WATER? ";
                 txtTail.Text = "WEIGHT (KG): ";
@@ -288,11 +312,12 @@ namespace AnimalPark
 
                 groupBoxMammal.Text = "BIRD SPECIFICATIONS:";
 
-
                 LabelSpeciesProperty.Text = "COLOR: ";
                 labelTeeth.Text = "WINGSPAN (CM): ";
                 txtTail.Text = "LENGTH OF A BEAK (CM): ";
             }
+
+           
         }
         private Animal CreateMammal()
         {
@@ -364,16 +389,16 @@ namespace AnimalPark
 
             if (species == ReptileSpecies.Snake)
             {
-                ((Snake)animal).Color = LabelSpeciesProperty.Text;
+                ((Snake)animal).Color = textBoxAnimalSpec.Text;
             }
 
             else if (species == ReptileSpecies.Lizard)
             {
-                ((Lizard)animal).Color = LabelSpeciesProperty.Text;
+                ((Lizard)animal).Color = textBoxAnimalSpec.Text;
             }
             else if (species == ReptileSpecies.Turtle)
             {
-                ((Turtle)animal).Color = LabelSpeciesProperty.Text;
+                ((Turtle)animal).Color = textBoxAnimalSpec.Text;
             }
             return animal;
 
@@ -434,6 +459,31 @@ namespace AnimalPark
                 pictureBoxAnimal.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxAnimal.Image = new Bitmap(open.FileName);
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listView1.FocusedItem.Index;
+            if (index == -1)
+                return;
+            IAnimal animal = manager.GetAnimalAt(index);
+
+            listBox2.Items.Clear();
+            listBox2.Items.Add("Food Schedule");
+            LabelEaterType.Text = "EATER TYPE: " + animal.GetEaterType().ToString();
+            foodSchedule = animal.GetFoodSchedule();
+            string[] foodList = foodSchedule.GetFoodListInfoStrings();
+
+
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(foodList);
+
+            lblAnimalInfo.Text = animal.GetExtraInfo();
         }
     }
 

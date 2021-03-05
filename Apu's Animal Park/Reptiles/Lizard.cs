@@ -17,6 +17,8 @@ namespace AnimalPark
 
     {
         private string color;
+        private FoodSchedule foodSchedule;
+
         public Lizard(double weight, bool livesInWater) : base(weight, livesInWater)
         {
             color = "unknown";
@@ -28,16 +30,42 @@ namespace AnimalPark
             set { color = value; }
         }
 
+        private void SetFoodSchedule()
+        {
+            foodSchedule = new FoodSchedule();
+            foodSchedule.EaterType = EaterType.Omnivore;
+            foodSchedule.Add("Morning: Bla Bla Bla");
+            foodSchedule.Add("Lunch: Bla Bla Bla");
+            foodSchedule.Add("Evening: Bla Bla Bla");
+        }
+        public override FoodSchedule FoodSchedule => foodSchedule;
+
+        public override FoodSchedule GetFoodSchedule()
+
+        {
+            SetFoodSchedule();
+            return foodSchedule;
+        }
+
+        public override EaterType GetEaterType()
+        {
+            return EaterType.Carnivore;
+
+        }
         /// <summary>
         /// ToString: Method to print out info about lizard
         /// </summary>
-        public override string ToString()
+        public override string GetExtraInfo()
         {
-            string strOut = base.ToString();
+            string strOut = "Lizard\n\n";
+
+            strOut += base.GetExtraInfo();
             strOut += String.Format("Color: {0}. ", color);
 
             return strOut;
         }
+
+
     }
 }
 

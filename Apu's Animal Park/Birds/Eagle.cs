@@ -13,9 +13,10 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    internal class Eagle : Bird
+    class Eagle : Bird
     {
         private string color;
+        private FoodSchedule foodSchedule;
 
         public Eagle(double wingSpan, double lengthOfBeak) : base(wingSpan, lengthOfBeak)
         {
@@ -30,12 +31,38 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about eagle
         /// </summary>
-        public override string ToString()
+        /// 
+        private void SetFoodSchedule()
         {
-            string strOut = base.ToString();
+            foodSchedule = new FoodSchedule();
+            foodSchedule.EaterType = EaterType.Omnivore;
+            foodSchedule.Add("Morning: Bla Bla Bla");
+            foodSchedule.Add("Lunch: Bla Bla Bla");
+            foodSchedule.Add("Evening: Bla Bla Bla");
+        }
+        public override FoodSchedule FoodSchedule => foodSchedule;
+
+        public override FoodSchedule GetFoodSchedule()
+        {
+            SetFoodSchedule();
+            return foodSchedule;
+
+        }
+
+        public override EaterType GetEaterType()
+        {
+            return EaterType.Carnivore;
+
+        }
+        public override string GetExtraInfo()
+        {
+            string strOut = "Eagle\n\n";
+
+            strOut += base.GetExtraInfo();
             strOut += String.Format("Color: {0}. ", color);
 
             return strOut;
         }
+
     }
 }

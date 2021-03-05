@@ -13,9 +13,11 @@ using System.Threading.Tasks;
 /// </summary>
 namespace AnimalPark
 {
-    class Cat : Mammal
+    internal class Cat : Mammal
     {
         private string breed;
+        private FoodSchedule foodSchedule;
+
         public Cat(int numOfTeeth, double tailLength) : base(numOfTeeth, tailLength)
         {
             breed = "unknown";
@@ -29,10 +31,34 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about cat
         /// </summary>
-        public override string ToString()
+        /// 
+
+        private void SetFoodSchedule()
         {
-            string strOut = base.ToString();
-            strOut += String.Format("Breed: {0}. ", breed);
+            foodSchedule = new FoodSchedule();
+            foodSchedule.Add("Morning: Bla Bla Bla");
+            foodSchedule.Add("Lunch: Bla Bla Bla");
+            foodSchedule.Add("Evening: Bla Bla Bla");
+        }
+        public override FoodSchedule FoodSchedule => foodSchedule;
+
+        public override FoodSchedule GetFoodSchedule()
+        {
+            SetFoodSchedule();
+            return foodSchedule;
+
+        }
+
+        public override EaterType GetEaterType()
+        {
+            return EaterType.Carnivore;
+
+        }
+        public override string GetExtraInfo()
+        {
+            string strOut = "Cat\n\n";
+            strOut += base.GetExtraInfo();
+            strOut += String.Format("BREED: {0}. ", breed);
 
             return strOut;
         }
