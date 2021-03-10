@@ -1,7 +1,7 @@
 ﻿/// Reptile.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,8 @@ namespace AnimalPark
 {
     abstract class Reptile : Animal
     {
-        private bool livesInWater;
-        private double weight;
+        private readonly bool livesInWater;
+        private readonly double weight;
         public abstract FoodSchedule FoodSchedule { get; }
 
         public Reptile(double weight, bool livesInWater)

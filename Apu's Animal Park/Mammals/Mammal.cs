@@ -1,7 +1,7 @@
 ﻿/// Mammal.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,8 @@ namespace AnimalPark
 {
     abstract class Mammal : Animal
     {
-        private int numOfTeeth;
-        private double tailLength;
+        private readonly int numOfTeeth;
+        private readonly double tailLength;
         public abstract FoodSchedule FoodSchedule { get; }
 
         public Mammal(int numOfTeeth, double tailLength)
@@ -27,7 +27,25 @@ namespace AnimalPark
         /// <summary>
         /// ToString: Method to print out info about birds mammal objects
         /// </summary>
+        public static Mammal CreateMammal(MammalSpecies species, int numOfTeeth, double tailLength)
 
+        {
+            Mammal mammal = null;
+            switch (species)
+            {
+                case MammalSpecies.Cat:
+                    mammal = new Cat(numOfTeeth, tailLength);
+                    break;
+                case MammalSpecies.Dog:
+                    mammal = new Dog(numOfTeeth, tailLength);
+                    break;
+                case MammalSpecies.Horse:
+                    mammal = new Horse(numOfTeeth, tailLength);
+                    break;
+
+            }
+            return mammal;
+        }
         public override string GetExtraInfo()
         {
             string strOut = base.GetExtraInfo();

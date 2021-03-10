@@ -1,7 +1,7 @@
 ﻿/// Dog.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,7 @@ namespace AnimalPark
     {
         private string breed;
         private FoodSchedule foodSchedule;
+        private string species;
 
         public Dog(int numOfTeeth, double tailLength) : base(numOfTeeth, tailLength)
         {
@@ -29,6 +30,7 @@ namespace AnimalPark
             set { breed = value; }
         }
 
+        //Method to set food schedule for Dog
         private void SetFoodSchedule()
         {
             foodSchedule = new FoodSchedule();
@@ -37,6 +39,8 @@ namespace AnimalPark
             foodSchedule.Add("Evening: Bla Bla Bla");
         }
         public override FoodSchedule FoodSchedule => foodSchedule;
+        //Method to get food schedule for dog
+
         public override FoodSchedule GetFoodSchedule()
         {
             SetFoodSchedule();
@@ -48,6 +52,12 @@ namespace AnimalPark
         {
             return EaterType.Carnivore;
 
+        }
+
+        public override string GetSpecies()
+        {
+            species = MammalSpecies.Dog.ToString();
+            return species;
         }
         /// <summary>
         /// ToString: Method to print out info about dog

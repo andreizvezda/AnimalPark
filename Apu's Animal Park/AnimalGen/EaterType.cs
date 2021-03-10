@@ -1,7 +1,7 @@
-﻿/// GenderType.cs
+﻿/// EaterType.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-12
-/// Updated: 2020-02-15
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;

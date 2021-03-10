@@ -1,7 +1,7 @@
 ﻿/// Cat.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,8 @@ namespace AnimalPark
     {
         private string breed;
         private FoodSchedule foodSchedule;
+        private string species;
+
 
         public Cat(int numOfTeeth, double tailLength) : base(numOfTeeth, tailLength)
         {
@@ -33,6 +35,8 @@ namespace AnimalPark
         /// </summary>
         /// 
 
+        //Method to set food schedule for Cat
+
         private void SetFoodSchedule()
         {
             foodSchedule = new FoodSchedule();
@@ -42,21 +46,31 @@ namespace AnimalPark
         }
         public override FoodSchedule FoodSchedule => foodSchedule;
 
+        //Method to get food schedule for Cat
         public override FoodSchedule GetFoodSchedule()
         {
             SetFoodSchedule();
             return foodSchedule;
 
         }
+        //Method to get eater type
 
         public override EaterType GetEaterType()
         {
             return EaterType.Carnivore;
 
         }
+
+        //Method to get species
+
+        public override string GetSpecies()
+        {
+            species = MammalSpecies.Cat.ToString();
+            return species;
+        }
         public override string GetExtraInfo()
         {
-            string strOut = "Cat\n\n";
+            string strOut = species + "\n\n";
             strOut += base.GetExtraInfo();
             strOut += String.Format("BREED: {0}. ", breed);
 

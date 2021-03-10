@@ -17,6 +17,7 @@ namespace AnimalPark
     {
         private string color;
         private FoodSchedule foodSchedule;
+        private string species;
 
         public Dove(double wingSpan, double lengthOfBeak) : base(wingSpan, lengthOfBeak)
         {
@@ -29,16 +30,20 @@ namespace AnimalPark
             set { color = value; }
         }
 
+        //Method to set food schedule for dove
         private void SetFoodSchedule()
         {
-            foodSchedule = new FoodSchedule();
-            foodSchedule.EaterType = EaterType.Omnivore;
+            foodSchedule = new FoodSchedule
+            {
+                EaterType = EaterType.Omnivore
+            };
             foodSchedule.Add("Morning: Bla Bla Bla");
             foodSchedule.Add("Lunch: Bla Bla Bla");
             foodSchedule.Add("Evening: Bla Bla Bla");
         }
         public override FoodSchedule FoodSchedule => foodSchedule;
 
+        //Method to get food schedule for dove
         public override FoodSchedule GetFoodSchedule()
         {
             SetFoodSchedule();
@@ -49,14 +54,19 @@ namespace AnimalPark
         public override EaterType GetEaterType()
         {
             return EaterType.Herbivore;
+        }
 
+        public override string GetSpecies()
+        {
+            species = BirdsSpecies.Dove.ToString();
+            return species;
         }
         /// <summary>
         /// ToString: Method to print out info about dove
         /// </summary>
         public override string GetExtraInfo()
         {
-            string strOut = "Dove\n\n";
+            string strOut = species+"\n\n";
 
             strOut += base.GetExtraInfo();
             strOut += String.Format("Color: {0}. ", color);

@@ -1,7 +1,7 @@
 ﻿/// AnimalManager.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 /// 
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace AnimalPark
 {
     class AnimalManager
     {
-        private List<IAnimal> animalList;
+        private readonly List<IAnimal> animalList;
         private string startID = "000";
         public AnimalManager()
         {
@@ -25,16 +25,7 @@ namespace AnimalPark
             
         
         }
-        private int FindVacantPosition()
-        {
-            for (int i = 0; i < animalList.Count; i++)
-            {
-                if (animalList[i] == null)
-                    return i;
-            }
-            return -1;
-        }
-        
+
         //will save animal object into animalList array if there is free space, and return true/false
         public int Add(IAnimal newAnimal, CategoryType 
             category)
@@ -76,7 +67,7 @@ namespace AnimalPark
         }
 
         public string[] GetAnimalListInfoStrings()
-
+            //Method to convert animal info to strings
         {
             string[] strOut = new string[this.animalList.Count];
             int i = 0;
@@ -90,18 +81,18 @@ namespace AnimalPark
 
         }
         public string GetNewID(CategoryType category)
-        {
+        {   //method to get animal id
             if (category == CategoryType.Mammal)
             {
-                startID = "M";
+                startID = "M0";
             }
             else if (category == CategoryType.Bird)
             {
-                startID = "B";
+                startID = "B0";
             }
             else if (category == CategoryType.Reptile)
             {
-                startID = "R";
+                startID = "R0";
             }
 
             return startID + CurrentNumberOfItems().ToString();

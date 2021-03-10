@@ -52,8 +52,8 @@
     <Compile Include="AnimalGen\EaterType.cs" />
     <Compile Include="AnimalGen\FoodSchedule.cs" />
     <Compile Include="AnimalGen\IAnimal.cs" />
-    <Compile Include="AnimalGen\IComparable.cs" />
     <Compile Include="AnimalGen\IFood.cs" />
+    <Compile Include="AnimalGen\ListViewColumnSorter.cs" />
     <Compile Include="Birds\Bird.cs" />
     <Compile Include="Birds\BirdsSpecies.cs" />
     <Compile Include="Birds\Dove.cs" />
@@ -70,7 +70,6 @@
     <Compile Include="Mammals\Dog.cs" />
     <Compile Include="Mammals\Horse.cs" />
     <Compile Include="Mammals\Mammal.cs" />
-    <Compile Include="Mammals\MammalFactory.cs" />
     <Compile Include="Mammals\MammalSpecies.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

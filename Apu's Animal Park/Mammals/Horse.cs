@@ -1,7 +1,7 @@
 ﻿/// Horse.cs
 /// Created by Andrius Sukys
 /// Created: 2020-02-01
-/// Updated: 2020-02-07
+/// Updated: 2020-03-10
 
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace AnimalPark
     {
         private string breed;
         private FoodSchedule foodSchedule;
-
+        private string species;
         public Horse(int numOfTeeth, double tailLength) : base(numOfTeeth, tailLength)
         {
             breed = "unknown";
@@ -34,6 +34,8 @@ namespace AnimalPark
         /// </summary>
         /// 
 
+
+        //Method to set food schedule for Horse
         private void SetFoodSchedule()
         {
             foodSchedule = new FoodSchedule();
@@ -42,22 +44,28 @@ namespace AnimalPark
             foodSchedule.Add("Evening: Bla Bla Bla");
         }
         public override FoodSchedule FoodSchedule => foodSchedule;
-
+        //Method to get food schedule for Horse
         public override FoodSchedule GetFoodSchedule()
         {
             SetFoodSchedule();
             return foodSchedule;
 
         }
-
+        //Method to get Eater type
         public override EaterType GetEaterType()
         {
             return EaterType.Herbivore;
 
         }
+        //Method to get species
+        public override string GetSpecies()
+        {
+            species = MammalSpecies.Horse.ToString();
+            return species;
+        }
         public override string GetExtraInfo()
         {
-            string strOut = "Horse\n\n";
+            string strOut = species +  "\n\n";
 
             strOut += base.GetExtraInfo();
             strOut += String.Format("Breed: {0}. ", breed);

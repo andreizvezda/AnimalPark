@@ -15,8 +15,8 @@ namespace AnimalPark
 {
     abstract class Bird : Animal
     {
-        private double wingSpan;
-        private double lengthOfBeak;
+        private readonly double wingSpan;
+        private readonly double lengthOfBeak;
         public abstract FoodSchedule FoodSchedule { get; }
 
         public Bird(double wingSpan, double lengthOfBeak)
@@ -47,8 +47,6 @@ namespace AnimalPark
             }
             return bird;
         }
-
-
 
         /// <summary>
         /// ToString: Method to print out info about bird objects
