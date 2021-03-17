@@ -20,7 +20,6 @@ namespace AnimalPark
     {
         private readonly AnimalManager manager = new AnimalManager();
         private FoodSchedule foodSchedule = new FoodSchedule();
-        private readonly ListViewColumnSorter lvwColumnSorter = new ListViewColumnSorter();
         public MainForm()
         {
             InitializeComponent();
@@ -66,32 +65,32 @@ namespace AnimalPark
             {
                 Text = " ID "
             };
-            this.listView1.Columns.Add(columnheader);
+            this.listViewAnimal.Columns.Add(columnheader);
 
             columnheader = new ColumnHeader
             {
                 Text = " NAME "
             };
-            this.listView1.Columns.Add(columnheader);
+            this.listViewAnimal.Columns.Add(columnheader);
             columnheader = new ColumnHeader
             {
                 Text = " AGE "
             };
-            this.listView1.Columns.Add(columnheader);
+            this.listViewAnimal.Columns.Add(columnheader);
 
             columnheader = new ColumnHeader
             {
                 Text = " GENDER "
             };
-            this.listView1.Columns.Add(columnheader);
+            this.listViewAnimal.Columns.Add(columnheader);
 
             columnheader = new ColumnHeader
             {
                 Text = " SPECIES "
             };
-            this.listView1.Columns.Add(columnheader);
+            this.listViewAnimal.Columns.Add(columnheader);
 
-            foreach (ColumnHeader ch in this.listView1.Columns)
+            foreach (ColumnHeader ch in this.listViewAnimal.Columns)
             {
                 ch.Width = -2;
             }
@@ -243,11 +242,16 @@ namespace AnimalPark
 
             int numberOfItems = manager.CurrentNumberOfItems();
 
-            listView1.Items.Clear();
+            listViewAnimal.Items.Clear();
             for (int i = 0; i < numberOfItems; i++)
             {
-                listView1.Items.Add(new ListViewItem(new string[] { manager.GetAnimalAt(i).Id.ToString(), manager.GetAnimalAt(i).Name.ToString(), manager.GetAnimalAt(i).Age.ToString(), manager.GetAnimalAt(i).Gender.ToString(), manager.GetAnimalAt(i).GetSpecies()}));
+                listViewAnimal.Items.Add(new ListViewItem(new string[] { manager.GetAnimalAt(i).Id.ToString(), manager.GetAnimalAt(i).Name.ToString(), manager.GetAnimalAt(i).Age.ToString(), manager.GetAnimalAt(i).Gender.ToString(), manager.GetAnimalAt(i).GetSpecies()}));
             }
+
+
+
+
+
         }
 
         private Animal CreateMammal()
@@ -477,16 +481,15 @@ namespace AnimalPark
 
         }
 
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListViewAnimal_SelectedIndexChanged(object sender, EventArgs e)
         {
             //method to update foodchedule groupbox based on animal selected
 
 
-            int index = listView1.FocusedItem.Index;
+            int index = listViewAnimal.FocusedItem.Index;
             if (index == -1)
                 return;
             IAnimal animal = manager.GetAnimalAt(index);
-
             listBox2.Items.Clear();
             listBox2.Items.Add("Food Schedule");
             LabelEaterType.Text = "EATER TYPE: " + animal.GetEaterType().ToString();
@@ -501,33 +504,27 @@ namespace AnimalPark
 
 
         }
-        private void ListView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ListViewAnimal_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //Method to sort based on columns
-
-            this.listView1.ListViewItemSorter = lvwColumnSorter;
-
-            if (e.Column == lvwColumnSorter.SortColumn)
+            //Will sort ascending
+            if (e.Column == 1)
             {
-                // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
-                {
-                    lvwColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
-                }
+                manager.SortName();
+                ShowAllAnimals();
             }
+            else if (e.Column == 4)
+            {
+                manager.SortSpecies();
+                ShowAllAnimals();
+
+            }
+
             else
-            {
-                // Set the column number that is to be sorted; default to ascending.
-                lvwColumnSorter.SortColumn = e.Column;
-                lvwColumnSorter.Order = SortOrder.Ascending;
-            }
 
-            // Perform the sort with these new sort options.
-            listView1.Sort();
+            {
+                MessageBox.Show("To Sort: Please click either NAME or SPECIES column!");
+
+            }
         }
     }
 

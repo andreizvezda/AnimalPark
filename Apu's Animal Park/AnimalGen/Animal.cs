@@ -122,7 +122,6 @@ namespace AnimalPark
             set { id = value; }
         }
 
-
         //this method can be used or overridden by subclasses 
 
         public override string ToString()

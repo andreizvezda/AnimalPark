@@ -17,13 +17,11 @@ namespace AnimalPark
 {
     class AnimalManager
     {
-        private readonly List<IAnimal> animalList;
+        private List<IAnimal> animalList;
         private string startID = "000";
         public AnimalManager()
         {
             animalList = new List<IAnimal>();
-            
-        
         }
 
         //will save animal object into animalList array if there is free space, and return true/false
@@ -97,6 +95,19 @@ namespace AnimalPark
 
             return startID + CurrentNumberOfItems().ToString();
         }
+
+        // method to sort by name Ascending
+        public void SortName()
+        {
+            animalList.Sort((x, y) => x.Name.CompareTo(y.Name));        
+        }
+        // method to sort by species Ascending
+
+        public void SortSpecies()
+        {
+            animalList.Sort((x, y) => x.GetSpecies().CompareTo(y.GetSpecies()));
+        }
+
     }
 
 }

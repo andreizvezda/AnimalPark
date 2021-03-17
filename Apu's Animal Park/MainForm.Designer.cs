@@ -30,11 +30,10 @@ namespace AnimalPark
         private void InitializeComponent()
         {
             this.groupBoxAnimal = new System.Windows.Forms.GroupBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.LabelEaterType = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.LabelEaterType = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.lblAnimalInfo = new System.Windows.Forms.Label();
             this.groupBoxType = new System.Windows.Forms.GroupBox();
             this.textBoxAnimalSpec = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@ namespace AnimalPark
             this.listBoxCategory = new System.Windows.Forms.ListBox();
             this.groupBoxgGender = new System.Windows.Forms.GroupBox();
             this.listBoxGender = new System.Windows.Forms.ListBox();
+            this.listViewAnimal = new System.Windows.Forms.ListView();
             this.groupBoxAnimal.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxType.SuspendLayout();
@@ -91,25 +91,6 @@ namespace AnimalPark
             this.groupBoxAnimal.TabStop = false;
             this.groupBoxAnimal.Text = "ANIMAL SPECIFICATIONS";
             // 
-            // listBox2
-            // 
-            this.listBox2.BackColor = System.Drawing.SystemColors.Menu;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(549, 27);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox2.Size = new System.Drawing.Size(254, 160);
-            this.listBox2.TabIndex = 23;
-            // 
-            // LabelEaterType
-            // 
-            this.LabelEaterType.AutoSize = true;
-            this.LabelEaterType.Location = new System.Drawing.Point(549, 9);
-            this.LabelEaterType.Name = "LabelEaterType";
-            this.LabelEaterType.Size = new System.Drawing.Size(82, 13);
-            this.LabelEaterType.TabIndex = 22;
-            this.LabelEaterType.Text = "LabelEaterType";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(646, 230);
@@ -124,7 +105,7 @@ namespace AnimalPark
             // 
             this.groupBox1.Controls.Add(this.LabelEaterType);
             this.groupBox1.Controls.Add(this.listBox2);
-            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.listViewAnimal);
             this.groupBox1.Controls.Add(this.lblAnimalInfo);
             this.groupBox1.Location = new System.Drawing.Point(12, 322);
             this.groupBox1.Name = "groupBox1";
@@ -133,18 +114,24 @@ namespace AnimalPark
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "LIST OF REGISTERED ANIMALS:";
             // 
-            // listView1
+            // LabelEaterType
             // 
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(261, 9);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(282, 176);
-            this.listView1.TabIndex = 19;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListView1_ColumnClick);
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
+            this.LabelEaterType.AutoSize = true;
+            this.LabelEaterType.Location = new System.Drawing.Point(549, 9);
+            this.LabelEaterType.Name = "LabelEaterType";
+            this.LabelEaterType.Size = new System.Drawing.Size(82, 13);
+            this.LabelEaterType.TabIndex = 22;
+            this.LabelEaterType.Text = "LabelEaterType";
+            // 
+            // listBox2
+            // 
+            this.listBox2.BackColor = System.Drawing.SystemColors.Menu;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(549, 27);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox2.Size = new System.Drawing.Size(254, 160);
+            this.listBox2.TabIndex = 23;
             // 
             // lblAnimalInfo
             // 
@@ -352,6 +339,19 @@ namespace AnimalPark
             this.listBoxGender.Size = new System.Drawing.Size(120, 56);
             this.listBoxGender.TabIndex = 0;
             // 
+            // listViewAnimal
+            // 
+            this.listViewAnimal.FullRowSelect = true;
+            this.listViewAnimal.HideSelection = false;
+            this.listViewAnimal.Location = new System.Drawing.Point(261, 9);
+            this.listViewAnimal.Name = "listViewAnimal";
+            this.listViewAnimal.Size = new System.Drawing.Size(282, 176);
+            this.listViewAnimal.TabIndex = 19;
+            this.listViewAnimal.UseCompatibleStateImageBehavior = false;
+            this.listViewAnimal.View = System.Windows.Forms.View.Details;
+            this.listViewAnimal.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewAnimal_ColumnClick);
+            this.listViewAnimal.SelectedIndexChanged += new System.EventHandler(this.ListViewAnimal_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,7 +404,7 @@ namespace AnimalPark
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label LabelEaterType;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewAnimal;
     }
 }
 

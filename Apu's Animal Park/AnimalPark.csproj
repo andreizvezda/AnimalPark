@@ -53,7 +53,6 @@
     <Compile Include="AnimalGen\FoodSchedule.cs" />
     <Compile Include="AnimalGen\IAnimal.cs" />
     <Compile Include="AnimalGen\IFood.cs" />
-    <Compile Include="AnimalGen\ListViewColumnSorter.cs" />
     <Compile Include="Birds\Bird.cs" />
     <Compile Include="Birds\BirdsSpecies.cs" />
     <Compile Include="Birds\Dove.cs" />
